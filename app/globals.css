@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette: Aegean limestone, espresso and fired clay. */
+  --color-paper: #f6f1e9;
+  --color-paper-deep: #ece5d9;
+  --color-line: #d9d0c2;
+  --color-ink: #241e18;
+  --color-ink-soft: #5e5449;
+  --color-clay: #98502f;
+  --color-clay-deep: #7c3f24;
+  --color-clay-light: #d9a585;
+  --color-espresso: #1e1813;
+  --color-espresso-soft: #2c241d;
+  --color-espresso-line: #44392f;
+  --color-sand: #cbbba4;
+  --color-danger: #9a2c1e;
+  --color-olive: #4f5b3a;
+
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    /* Tall enough that Turkish capitals (İ, Ğ, Ş) never collide across lines. */
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-clay);
+    color: var(--color-paper);
+  }
+
+  [id] {
+    scroll-margin-top: 6.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility text-display-xl {
+  font-size: clamp(3.1rem, 7.2vw, 7rem);
+  line-height: 1.02;
+}
+
+@utility text-display-lg {
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  line-height: 1.06;
+}
+
+@utility text-display-md {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  line-height: 1.1;
+}
+
+@utility text-display-sm {
+  font-size: clamp(1.625rem, 2.2vw, 2.125rem);
+  line-height: 1.16;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* Photographs are slightly desaturated so stock and client images sit together
+   on the warm palette. */
+.photo img {
+  filter: saturate(0.9);
+}
+
+/* Scroll reveal uses no JavaScript. Browsers without scroll-driven animations
+   simply show the content. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+  }
+
+  .hero-photo {
+    animation: hero-settle 1.8s var(--ease-soft) both;
+  }
+
+  .hero-copy {
+    animation: fade-up 1s 0.15s var(--ease-soft) both;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Full-screen mobile menu: the page behind must not scroll. */
+dialog::backdrop {
+  background: rgb(30 24 19 / 0.6);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Native <details> marker removal for the FAQ. */
+summary::-webkit-details-marker {
+  display: none;
+}
