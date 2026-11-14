@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { EarningsCalculator } from "@/components/sections/earnings-calculator";
 import { FeaturedHomes } from "@/components/sections/featured-homes";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
@@ -26,9 +27,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero featured={properties[0]} />
+      <Hero />
       <StatsBar homeCount={status === "ok" ? properties.length : null} />
       <HowItWorks />
+      <EarningsCalculator />
       <FeaturedHomes properties={properties.slice(0, 3)} />
       <Trust />
       <ServicesShowcase services={services} />

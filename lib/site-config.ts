@@ -28,6 +28,7 @@ export const siteConfig = {
 
 export const mainNav = [
   { label: "Ana Sayfa", href: "/" },
+  { label: "Kazanç Hesapla", href: "/#kazanc" },
   { label: "Evlerim", href: "/evlerim" },
   { label: "Yönetim Planları", href: "/management-plans" },
   { label: "Fiyatlandırma", href: "/pricing" },

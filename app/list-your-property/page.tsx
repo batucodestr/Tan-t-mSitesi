@@ -27,15 +27,27 @@ const nextSteps = [
   { title: "Birlikte karar veririz", text: "Sizin için uygunsa hazırlık sürecini planlar, mülkünüzü yayına alırız." },
 ];
 
-export default function ListYourPropertyPage() {
+function param(value: string | string[] | undefined, max: number): string | undefined {
+  const text = (Array.isArray(value) ? value[0] : value)?.trim();
+  return text ? text.slice(0, max) : undefined;
+}
+
+export default async function ListYourPropertyPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const { phoneDisplay, phoneHref } = siteConfig.contact;
+  // Filled in when the visitor arrives from the earnings calculator.
+  const query = await searchParams;
+  const initialValues = { propertyLocation: param(query.konum, 200), additionalInfo: param(query.bilgi, 2000) };
 
   return (
     <section className="pb-24 pt-36 md:pb-32 md:pt-44">
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-6 text-clay">Mülk sahipleri için</p>
+            <p className="eyebrow mb-6 text-clay-deep">Mülk sahipleri için</p>
             <h1 className="text-display-lg">Mülkünüzü bize anlatın, gerisini konuşalım.</h1>
             <p className="mt-6 text-lg text-ink-soft">
               Formu doldurmanız birkaç dakikanızı alır. Başvuru ücretsizdir ve sizi hiçbir şeye bağlamaz.
@@ -59,9 +71,9 @@ export default function ListYourPropertyPage() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="bg-paper-deep p-6 sm:p-10 md:p-12">
+            <div className="rounded-panel border border-line bg-card p-6 shadow-card sm:p-10 md:p-12">
               <h2 className="mb-8 text-display-md">Başvuru formu</h2>
-              <OwnerApplicationForm />
+              <OwnerApplicationForm initialValues={initialValues} />
             </div>
 
             <div className="mt-14">

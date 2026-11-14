@@ -24,6 +24,7 @@ function useIsScrolled() {
 }
 
 function isActive(pathname: string, href: string) {
+  if (href.includes("#")) return false;
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 

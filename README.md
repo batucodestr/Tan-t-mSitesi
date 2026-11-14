@@ -58,6 +58,7 @@ With `PMS_API_URL` unset, development logs each submission to the server console
 
 - [ ] Brand name, logo and contact details in `lib/site-config.ts`, `components/layout/logo.tsx` and `app/icon.svg`. Everything there is a placeholder.
 - [ ] The "Neden Avlu" heading and the name story on `/about` use the placeholder brand name.
+- [ ] Earnings calculator coefficients in `lib/data/earnings.ts` (city base rates, district factors, occupancy). They are placeholder estimates, not market data; calibrate them against your own portfolio.
 - [ ] Commission rates in `lib/data/plans.ts`. They currently read "Değerlendirme sonrası belirlenir".
 - [ ] Plan names and contents in `lib/data/plans.ts`, and the "no fixed fee, commission on revenue" statements on `/pricing`, are proposals to confirm.
 - [ ] Review the sample articles and dates in `lib/data/blog.ts`.

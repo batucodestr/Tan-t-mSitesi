@@ -10,11 +10,17 @@ import { submitOwnerApplication } from "@/lib/actions/leads";
 import { PROPERTY_COUNT_OPTIONS, PROPERTY_TYPE_OPTIONS } from "@/lib/types/lead";
 import { validateOwnerApplication } from "@/lib/validation/leads";
 
-export function OwnerApplicationForm() {
-  const { state, formAction, pending, onSubmit, onBlur, errors, values } = useLeadForm(
+/** `initialValues` pre-fills fields, for example from the earnings calculator. */
+export function OwnerApplicationForm({
+  initialValues = {},
+}: {
+  initialValues?: { propertyLocation?: string; additionalInfo?: string };
+}) {
+  const { state, formAction, pending, onSubmit, onBlur, errors, values: submitted } = useLeadForm(
     submitOwnerApplication,
     validateOwnerApplication,
   );
+  const values = { ...initialValues, ...submitted };
 
   if (state.status === "success") {
     return (
