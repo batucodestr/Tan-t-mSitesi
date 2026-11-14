@@ -3,7 +3,7 @@ import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTML
 import { cn } from "@/lib/utils/cn";
 
 const controlClass =
-  "w-full border border-ink/25 bg-paper px-4 text-base transition-colors duration-200 placeholder:text-ink-soft/70 hover:border-ink/50 focus:border-clay focus:outline-none focus:ring-1 focus:ring-clay aria-[invalid=true]:border-danger";
+  "w-full rounded-xl border-[1.5px] border-line-strong bg-white px-4 text-base transition-colors duration-200 placeholder:text-ink-soft/70 hover:border-ink/40 focus:border-clay focus:outline-none focus:ring-3 focus:ring-clay/15 aria-[invalid=true]:border-danger";
 
 function FieldShell({
   id,
@@ -24,7 +24,7 @@ function FieldShell({
 }) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-2 flex items-baseline justify-between gap-3 text-[0.9375rem] font-medium">
+      <label htmlFor={id} className="mb-2 flex items-baseline justify-between gap-3 text-[0.9375rem] font-semibold">
         {label}
         {optional && <span className="text-sm font-normal text-ink-soft">İsteğe bağlı</span>}
       </label>

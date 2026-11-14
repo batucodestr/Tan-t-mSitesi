@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant, Instrument_Sans } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
@@ -9,16 +9,18 @@ import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 // Turkish letters (ş, ğ, ı, İ) are in the latin-ext subset.
-const cormorant = Cormorant({
+const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
-  weight: ["500"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
-const instrument = Instrument_Sans({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-instrument",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -42,17 +44,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f1e9",
+  themeColor: "#fbf7f1",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // lang="tr" also makes CSS uppercase produce "İ" rather than "I".
-    <html lang="tr" className={`${cormorant.variable} ${instrument.variable}`}>
+    <html lang="tr" className={`${fraunces.variable} ${jakarta.variable}`}>
       <body>
         <a
           href="#icerik"
-          className="fixed left-4 top-4 z-50 -translate-y-24 bg-ink px-4 py-2 text-paper transition-transform focus:translate-y-0"
+          className="fixed left-4 top-4 z-50 -translate-y-24 rounded-full bg-ink px-4 py-2 text-paper transition-transform focus:translate-y-0"
         >
           İçeriğe geç
         </a>

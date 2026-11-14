@@ -17,7 +17,7 @@ const photos = [
     src: "/images/gallery/kemerli-salon.jpg",
     alt: "Kemerli pencereli, ahşap kirişli ve şömineli aydınlık salon",
     caption: "Yaşam alanı",
-    className: "lg:col-span-5 lg:mt-32",
+    className: "lg:col-span-5 lg:mt-24",
     aspect: "aspect-[4/3] lg:aspect-[5/6]",
     sizes: "(min-width: 1024px) 40vw, 100vw",
   },
@@ -33,7 +33,7 @@ const photos = [
     src: "/images/gallery/sehir-dairesi.jpg",
     alt: "Şehre bakan pencereli, kırmızı koltuklu aydınlık bir daire",
     caption: "Şehir dairesi",
-    className: "lg:col-span-7 lg:mt-32",
+    className: "lg:col-span-7 lg:mt-24",
     aspect: "aspect-[4/3]",
     sizes: "(min-width: 1024px) 56vw, 100vw",
   },
@@ -41,7 +41,7 @@ const photos = [
 
 export function PhotoGallery() {
   return (
-    <section className="py-24 md:py-36">
+    <section className="py-20 md:py-28">
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading eyebrow="Misafirin gördüğü" title="İlk izlenim bizim işimiz.">
@@ -50,11 +50,11 @@ export function PhotoGallery() {
           <TextLink href="/management-plans" className="self-start lg:self-end">Planlarımızı inceleyin</TextLink>
         </div>
 
-        <div className="mt-14 grid gap-x-10 gap-y-12 lg:mt-20 lg:grid-cols-12 lg:gap-y-24">
+        <div className="mt-14 grid gap-x-10 gap-y-12 lg:mt-20 lg:grid-cols-12 lg:gap-y-16">
           {photos.map((photo) => (
             <figure key={photo.src} className={`reveal ${photo.className}`}>
-              <Photo src={photo.src} alt={photo.alt} sizes={photo.sizes} className={photo.aspect} />
-              <figcaption className="mt-3 text-[0.9375rem] text-ink-soft">{photo.caption}</figcaption>
+              <Photo src={photo.src} alt={photo.alt} sizes={photo.sizes} className={`${photo.aspect} rounded-card`} />
+              <figcaption className="mt-3 text-[0.9375rem] font-semibold text-ink-soft">{photo.caption}</figcaption>
             </figure>
           ))}
         </div>

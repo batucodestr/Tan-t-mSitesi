@@ -28,7 +28,8 @@ export const siteConfig = {
 
 export const mainNav = [
   { label: "Ana Sayfa", href: "/" },
-  { label: "Yönetim Planlarımız", href: "/management-plans" },
+  { label: "Evlerim", href: "/evlerim" },
+  { label: "Yönetim Planları", href: "/management-plans" },
   { label: "Fiyatlandırma", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "İletişim", href: "/contact" },

@@ -18,30 +18,35 @@ export function OwnerCta({
   text?: string;
 }) {
   return (
-    <section className="grid bg-clay text-paper lg:grid-cols-2">
-      <div className="flex flex-col justify-center px-5 py-20 md:px-10 lg:px-16 lg:py-32">
-        <div className="reveal max-w-xl">
-          <h2 className="text-display-lg">{title}</h2>
-          <p className="mt-6 text-lg text-paper/90">{text}</p>
-          <ul className="mt-8 space-y-3">
-            {assurances.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <Check aria-hidden size={20} strokeWidth={1.5} className="mt-1 shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <ButtonLink href={ownerCta.href} variant="paper" className="mt-10">
-            {ownerCta.label}
-          </ButtonLink>
+    <section className="px-4 py-20 sm:px-6 md:py-28">
+      <div className="relative mx-auto grid max-w-[1240px] overflow-hidden rounded-panel bg-[linear-gradient(120deg,var(--color-clay),var(--color-clay-deep))] text-white shadow-lift lg:grid-cols-2">
+        <span aria-hidden className="pointer-events-none absolute -left-20 -top-30 size-85 rounded-full bg-white/8" />
+        <div className="relative flex flex-col justify-center px-7 py-14 sm:px-12 lg:py-20">
+          <div className="reveal max-w-xl">
+            <h2 className="text-display-lg text-white">{title}</h2>
+            <p className="mt-5 text-lg text-white/90">{text}</p>
+            <ul className="mt-7 space-y-3">
+              {assurances.map((item) => (
+                <li key={item} className="flex items-start gap-3 font-semibold">
+                  <span aria-hidden className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20">
+                    <Check size={15} strokeWidth={2.6} />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <ButtonLink href={ownerCta.href} variant="paper" className="mt-9">
+              {ownerCta.label}
+            </ButtonLink>
+          </div>
         </div>
+        <Photo
+          src="/images/site/cta.jpg"
+          alt="Ağaçlar arasında, bahçeli çağdaş bir ev"
+          sizes="(min-width: 1024px) 620px, 100vw"
+          className="aspect-[4/3] lg:aspect-auto lg:min-h-full"
+        />
       </div>
-      <Photo
-        src="/images/site/cta.jpg"
-        alt="Ağaçlar arasında, bahçeli çağdaş bir ev"
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="aspect-[4/3] lg:aspect-auto lg:min-h-full"
-      />
     </section>
   );
 }

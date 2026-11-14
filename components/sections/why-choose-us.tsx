@@ -22,7 +22,7 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="pb-24 md:pb-36">
+    <section className="py-20 md:py-28">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
@@ -30,18 +30,18 @@ export function WhyChooseUs() {
               src="/images/site/why.jpg"
               alt="Doğal dokularla döşenmiş, bitkilerle çevrili sıcak bir oturma odası"
               sizes="(min-width: 1024px) 45vw, 100vw"
-              className="reveal aspect-[4/3] lg:sticky lg:top-28 lg:aspect-[4/5]"
+              className="reveal aspect-[4/3] rounded-panel lg:sticky lg:top-28 lg:aspect-[4/5]"
             />
           </div>
 
           <div className="lg:col-span-6 lg:pt-10">
-            <p className="eyebrow mb-5 text-clay">Neden Avlu</p>
+            <p className="eyebrow mb-4 text-clay-deep">Neden Avlu</p>
             <h2 className="text-display-lg">Mülkünüz bize bir emanettir.</h2>
-            <dl className="mt-12 border-t border-ink/80">
+            <dl className="mt-10 space-y-3">
               {reasons.map((reason) => (
-                <div key={reason.title} className="reveal border-b border-line py-8">
-                  <dt className="font-display text-display-sm">{reason.title}</dt>
-                  <dd className="mt-3 text-ink-soft">{reason.text}</dd>
+                <div key={reason.title} className="reveal rounded-card border border-line bg-card px-6 py-6 lg:px-7">
+                  <dt className="font-display text-[1.35rem] font-semibold">{reason.title}</dt>
+                  <dd className="mt-2 text-[0.98rem] text-ink-soft">{reason.text}</dd>
                 </div>
               ))}
             </dl>

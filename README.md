@@ -1,6 +1,6 @@
 # Avlu: short-term rental management website
 
-Corporate website for a property management company in Türkiye, aimed at property owners. Next.js (App Router), TypeScript, Tailwind CSS v4 and Lucide. It has no booking engine, no payments, no property listings and no reservation data.
+Corporate website for a property management company in Türkiye, aimed at property owners. Next.js (App Router), TypeScript, Tailwind CSS v4 and Lucide. It has no booking engine and no payments. The **Evlerim** page (`/evlerim`) lists homes live from the PMS.
 
 ## Getting started
 
@@ -17,7 +17,8 @@ Copy `.env.example` to `.env.local` to set the variables below.
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Public URL, used for canonical links, Open Graph, the sitemap and robots.txt. **Read at build time**, so it must be set when running `next build`. Without it, those URLs point to localhost. |
-| `PMS_API_URL` | Base URL of the Django PMS REST API. |
+| `PMS_API_URL` | Base URL of the Django PMS REST API, including `/api` (local Docker: `http://localhost/api`). |
+| `PMS_MEDIA_URL` | Optional. Where the PMS serves uploaded photos. Defaults to `<origin of PMS_API_URL>/media`. |
 | `PMS_API_TOKEN` | Optional. Sent as `Authorization: Token <value>`. |
 
 ## Structure
@@ -37,6 +38,12 @@ lib/types/           Lead types
 ```
 
 Design tokens (colours, fonts, type scale) are in `app/globals.css`.
+
+## Evlerim: homes from the PMS
+
+`/evlerim`, `/evlerim/[id]` and the homepage's featured homes read from the PMS endpoint `GET <PMS_API_URL>/public/properties/`. It is public and read-only, returns only active homes and leaves out phone, e-mail and street address. The data is the same Docker Postgres database the PMS panel writes to, so a home added in the PMS appears on the site within about 30 seconds (`REVALIDATE_SECONDS` in `lib/api/properties.ts`). Making a home inactive in the PMS removes it.
+
+Photos are served through `app/pms-media/[...path]/route.ts`, so browsers never need to reach the PMS host directly. If the PMS cannot be reached, the pages show an error state instead of failing.
 
 ## Connecting the PMS
 

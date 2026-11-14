@@ -7,6 +7,7 @@ import { siteConfig } from "@/lib/site-config";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths: { path: string; priority: number }[] = [
     { path: "", priority: 1 },
+    { path: "/evlerim", priority: 0.9 },
     { path: "/list-your-property", priority: 0.9 },
     { path: "/management-plans", priority: 0.9 },
     { path: "/pricing", priority: 0.8 },

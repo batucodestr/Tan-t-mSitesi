@@ -17,7 +17,7 @@ interface PhotoProps {
 /** A photograph that fills a sized frame. */
 export function Photo({ src, alt, sizes, className, imageClassName, preload }: PhotoProps) {
   return (
-    <div className={cn("photo relative overflow-hidden bg-paper-deep", className)}>
+    <div className={cn("photo relative overflow-hidden bg-paper-dark", className)}>
       <Image src={src} alt={alt} fill sizes={sizes} preload={preload} className={cn("object-cover", imageClassName)} />
     </div>
   );

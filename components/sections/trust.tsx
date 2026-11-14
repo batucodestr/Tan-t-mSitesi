@@ -1,7 +1,7 @@
 import { BarChart3, FileText, ShieldCheck, Star } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
-import { cn } from "@/lib/utils/cn";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const pillars = [
   {
@@ -28,31 +28,24 @@ const pillars = [
 
 export function Trust() {
   return (
-    <section className="py-24 md:py-36">
+    <section className="py-20 md:py-28">
       <Container>
-        <div className="reveal grid gap-8 lg:grid-cols-12">
-          <h2 className="text-display-lg lg:col-span-8">
-            Kısa dönem kiralama, her gün yeniden yapılan bir işletmecilik işidir.
-          </h2>
-          <p className="text-lg text-ink-soft lg:col-span-4 lg:self-end">
-            Biz bu işi mülkünüz için üstleniyoruz. Siz de tüm ayrıntılarla uğraşmadan sonuçları takip ediyorsunuz.
-          </p>
-        </div>
+        <SectionHeading eyebrow="Neler dahil" title="Baştan sona tam hizmet" align="center">
+          Kısa dönem kiralama her gün yeniden yapılan bir işletmecilik işidir. Biz bu işi mülkünüz için üstleniyoruz; siz
+          yalnızca sonuçları takip edin.
+        </SectionHeading>
 
-        <ul className="mt-16 grid border-t border-ink/80 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
-          {pillars.map(({ icon: Icon, title, text }, index) => (
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+          {pillars.map(({ icon: Icon, title, text }) => (
             <li
               key={title}
-              className={cn(
-                "reveal border-b border-line py-8 lg:border-b-0",
-                index % 2 === 0 ? "sm:pr-7" : "sm:border-l sm:pl-7 lg:pr-7",
-                index === 2 && "lg:border-l lg:pl-7",
-                index === 3 && "lg:pr-0",
-              )}
+              className="reveal rounded-card border border-line bg-card p-7.5 transition-all duration-400 ease-soft hover:-translate-y-1 hover:border-line-strong hover:shadow-card"
             >
-              <Icon aria-hidden size={26} strokeWidth={1.1} className="text-clay" />
-              <h3 className="mt-8 text-[1.75rem]">{title}</h3>
-              <p className="mt-3 text-ink-soft">{text}</p>
+              <span aria-hidden className="mb-4.5 flex size-13 items-center justify-center rounded-[15px] bg-clay-tint">
+                <Icon size={26} strokeWidth={1.8} className="text-clay-deep" />
+              </span>
+              <h3 className="text-[1.28rem]">{title}</h3>
+              <p className="mt-2.5 text-[0.97rem] text-ink-soft">{text}</p>
             </li>
           ))}
         </ul>
