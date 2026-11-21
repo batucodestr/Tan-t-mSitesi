@@ -48,10 +48,23 @@ export function hasActiveFilters(filters: PropertyFilters): boolean {
   return Boolean(filters.city || filters.rooms || filters.guests);
 }
 
-/** Distinct cities, sorted the Turkish way. */
+/** Cities always offered in the filter, even before any home is listed there. */
+export const FIXED_CITIES = ["İstanbul", "Muğla", "İzmir", "Antalya", "Aydın"] as const;
+
+/**
+ * The fixed cities first, then any other city a PMS home is in (sorted the
+ * Turkish way). Matching ignores case, so "izmir" in the PMS does not add a
+ * second İzmir.
+ */
 export function citiesOf(properties: PmsProperty[]): string[] {
-  const cities = new Set(properties.map((property) => property.city.trim()).filter(Boolean));
-  return [...cities].sort((a, b) => a.localeCompare(b, "tr"));
+  const key = (city: string) => city.trim().toLocaleLowerCase("tr");
+  const fixed = new Set(FIXED_CITIES.map(key));
+  const extra = new Map<string, string>();
+  for (const property of properties) {
+    const city = property.city.trim();
+    if (city && !fixed.has(key(city)) && !extra.has(key(city))) extra.set(key(city), city);
+  }
+  return [...FIXED_CITIES, ...[...extra.values()].sort((a, b) => a.localeCompare(b, "tr"))];
 }
 
 export function applyFilters(properties: PmsProperty[], filters: PropertyFilters): PmsProperty[] {

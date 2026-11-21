@@ -39,6 +39,9 @@ export default async function HomesPage({
   const filters = parseFilters(await searchParams);
   const { status, properties } = await getProperties();
   const cities = citiesOf(properties);
+  // "?sehir=izmir" should still select "İzmir" in the dropdown.
+  const selectedCity =
+    cities.find((city) => city.toLocaleLowerCase("tr") === filters.city.toLocaleLowerCase("tr")) ?? filters.city;
   const results = applyFilters(properties, filters);
   const filtered = hasActiveFilters(filters);
 
@@ -62,9 +65,9 @@ export default async function HomesPage({
           >
             <div className={`${fieldCell} md:border-r`}>
               <label htmlFor="sehir" className={fieldLabel}>Şehir</label>
-              <select id="sehir" name="sehir" defaultValue={filters.city} className={fieldControl}>
+              <select id="sehir" name="sehir" defaultValue={selectedCity} className={fieldControl}>
                 <option value="">Tüm şehirler</option>
-                {filters.city && !cities.includes(filters.city) && <option value={filters.city}>{filters.city}</option>}
+                {selectedCity && !cities.includes(selectedCity) && <option value={selectedCity}>{selectedCity}</option>}
                 {cities.map((city) => (
                   <option key={city} value={city}>{city}</option>
                 ))}
